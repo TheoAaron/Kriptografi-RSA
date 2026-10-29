@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">Local dashboard</p>
+      <h1>URL Shortener</h1>
+      <span class="status">{{ status }}</span>
+    </header>
+    <p class="notice">Educational mode — RSA dan hash manual ini bukan keamanan produksi.</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    <section class="card">
+      <form method="post" action="{{ url_for('shorten_url') }}">
+        <label for="url">URL asli</label>
+        <div class="form-row">
+          <input id="url" name="url" type="url" placeholder="https://contoh.com/halaman" required>
+          <button type="submit">Shorten URL</button>
+        </div>
+      </form>
+    </section>
+    <section class="card">
+      <h2>Link tersimpan</h2>
+      {% if entries %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Kode</th><th>URL</th><th>Aksi</th></tr></thead>
+          <tbody>
+          {% for code, entry in entries.items() %}
+            <tr>
+              <td><code>{{ code }}</code></td>
+              <td class="url-cell" title="{{ entry.url }}">{{ entry.url }}</td>
+              <td class="actions">
+                <a href="{{ url_for('resolve_url', code=code) }}">Resolve</a>
+                <button type="button" class="copy-button" data-copy="{{ request.url_root }}resolve/{{ code }}">Copy</button>
+                <form method="post" action="{{ url_for('delete_url', code=code) }}" onsubmit="return confirm('Hapus link ini?')">
+                  <button class="link-button" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+        <p class="empty">Belum ada link. Tambahkan URL di atas.</p>
+      {% endif %}
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll(".copy-button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        navigator.clipboard.writeText(button.dataset.copy).then(function () {
+          var oldText = button.textContent;
+          button.textContent = "Copied";
+          setTimeout(function () { button.textContent = oldText; }, 1200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

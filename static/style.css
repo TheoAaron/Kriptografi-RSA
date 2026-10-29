@@ -1,0 +1,163 @@
+:root {
+  color: #202124;
+  background: #f5f6f7;
+  font: 16px system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #687078;
+  font-size: 0.85rem;
+}
+
+h1 {
+  margin: 4px 0 12px;
+  font-size: 2rem;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+
+.status {
+  border: 1px solid #c9d2dc;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.notice,
+.message {
+  border-radius: 5px;
+  padding: 10px 12px;
+}
+
+.notice {
+  border: 1px solid #ead9a1;
+  background: #fff7df;
+  font-size: 0.9rem;
+}
+
+.message {
+  margin: 14px 0;
+  border: 1px solid #b8d8be;
+  background: #e8f4ea;
+}
+
+.message.error {
+  border-color: #e2b4b1;
+  background: #fff0ef;
+}
+
+.card {
+  margin-top: 18px;
+  border: 1px solid #dfe3e7;
+  border-radius: 6px;
+  padding: 20px;
+  background: #fff;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.form-row {
+  display: flex;
+  gap: 8px;
+}
+
+input {
+  flex: 1;
+  border: 1px solid #b8c0c8;
+  border-radius: 4px;
+  padding: 10px;
+  font: inherit;
+}
+
+button,
+a {
+  border: 0;
+  border-radius: 4px;
+  padding: 10px 14px;
+  color: #fff;
+  background: #356a9a;
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e8eaed;
+  padding: 11px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: #687078;
+  font-size: 0.85rem;
+}
+
+.url-cell {
+  max-width: 480px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions a,
+.actions button {
+  padding: 5px 8px;
+  font-size: 0.9rem;
+}
+
+.copy-button {
+  background: #687078;
+}
+
+.link-button {
+  background: #8a3d3d;
+}
+
+.actions form {
+  margin: 0;
+}
+
+.empty {
+  color: #687078;
+}
+
+@media (max-width: 620px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .url-cell {
+    max-width: 170px;
+  }
+}

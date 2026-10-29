@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+keys_private.json
+links.json
+.url_shortener_data/
+/assets
